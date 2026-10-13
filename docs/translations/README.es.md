@@ -116,6 +116,48 @@ Ahora empieza a contribuir en otros proyectos. Hemos reunido una lista de proyec
 
 ### [Material adicional](../additional-material/git_workflow_scenarios/additional-material.md)
 
+## Limpieza después de fusionar y buenas prácticas
+
+Una vez que tu *pull request* (PR) se haya fusionado, sigue estos pasos para mantener tu repositorio limpio y preparado para tu próxima contribución.
+
+### 1. Actualiza tu rama principal
+
+Cambia a tu rama principal y sincronízala con el repositorio original:
+
+```bash
+git checkout main
+git pull upstream main
+```
+
+Esto incorpora los últimos cambios del repositorio original a tu rama local `main`. Si todavía no has configurado el remoto `upstream`, consulta las instrucciones de configuración del repositorio.
+
+### 2. Elimina tu rama local
+
+Cuando hayas confirmado que tus cambios se han fusionado, elimina la rama que utilizaste para tu contribución:
+
+```bash
+git branch -d <nombre-de-la-rama>
+```
+
+Si se utilizó una fusión mediante *squash*, Git puede no reconocer la rama como fusionada. Utiliza `git branch -D <nombre-de-la-rama>` solo después de confirmar que ya no necesitas esa rama y que tus cambios están incluidos en el PR fusionado.
+
+### 3. Limpia las ramas remotas
+
+Si la rama de tu contribución todavía existe en tu *fork*, puedes eliminarla con:
+
+```bash
+git push origin --delete <nombre-de-la-rama>
+```
+
+También puedes eliminar las referencias locales a ramas remotas que ya no existen:
+
+```bash
+git fetch -p
+```
+
+Este comando limpia las referencias obsoletas, pero no elimina ramas del repositorio remoto.
+
+Mantener tu repositorio limpio te ayudará a empezar cada nueva contribución desde una rama `main` actualizada.
 
 ## Tutoriales con otras herramientas
 
